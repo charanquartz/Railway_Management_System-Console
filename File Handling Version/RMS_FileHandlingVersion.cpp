@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
-#include <conio.h>
+//#include <conio.h>
 #include <string.h>
 
 using namespace std;
@@ -130,7 +130,7 @@ void load_data();
 
 // ___________________________ Main Function _______________________________________________________
 
-main()
+int main()
 {
     load_data();
     string user;
@@ -148,11 +148,11 @@ main()
 
             while (true) // loop for admin option
             {
-                system("cls");
+                //system("clear");
                 head();
                 // calling admin menu
                 option = Admin_Menu();
-                system("cls");
+                //system("clear");
                 int sub_op;
 
                 if (option == '1')
@@ -183,7 +183,7 @@ main()
                         cout << endl;
                         cout << " Sorry! Our system has limit of only 10 routes." << endl;
                         cout << "Press any key for continue....";
-                        getch();
+                        
                         cout << endl;
                     }
 
@@ -267,7 +267,7 @@ main()
                 {
                     cout << "Invalid Input !" << endl;
                     cout << "Press any key for continue....";
-                    getch();
+                    
                     cout << endl;
                 }
             }
@@ -278,10 +278,11 @@ main()
             string option;
             while (true)
             {
-                system("cls");
+                //system("clear");
                 head();
                 option = user_menu();
-                system("cls");
+                //system("clear");
+            
                 int sub_op;
 
                 if (option == "1")
@@ -322,7 +323,7 @@ main()
                         cout << endl;
                         cout << "You cannot buy more than " << ticket_a << " tickets ! " << endl;
                         cout << "Press any key for continue....";
-                        getch();
+                        
                         cout << endl;
                     }
                     else
@@ -361,7 +362,7 @@ main()
                         cout << endl;
                         cout << "You cannot book cargo  more than " << ticket_a << " times ! " << endl;
                         cout << "Press any key for continue....";
-                        getch();
+                        //
                         cout << endl;
                     }
                     else
@@ -396,7 +397,7 @@ main()
                 {
                     cout << "Invalid Input !" << endl;
                     cout << "Press any key for continue....";
-                    getch();
+                    
                     cout << endl;
                 }
             }
@@ -432,7 +433,7 @@ string login_page(void)
 {
     while (true) // loop run until user enter wrong value
     {
-        system("cls");
+        //system("clear");
         head();
 
         string login;
@@ -460,7 +461,7 @@ string login_page(void)
             {
                 cout << "Invalid Password!" << endl;
                 cout << "Press any key for continue....";
-                getch();
+                //
                 cout << endl;
             }
         }
@@ -549,7 +550,7 @@ int list_of_trains(string name, string title)
 // view train routes station name and arrival departure times function
 void view_train_route_detail(string name, string title, int index)
 {
-    system("cls");
+    //system("clear");
     index = index - 1;
     head();
     // in place of "name" there we pass "user/admin" from function call
@@ -563,13 +564,13 @@ void view_train_route_detail(string name, string title, int index)
     // printing the stations name their arrival times and departure time
     cout << " Stations\tArrival\t\tDeparture " << endl;
     cout << endl;
-    cout << " " << ts1[index] << "\t" << ts1_ath[index] << ":" << ts1_atm[index] << "\t\t" << ts1_dth[index] << ":" << ts1_dtm[index] << endl;
+    cout << " " << ts1[index] << " \t" << ts1_ath[index] << ":" << ts1_atm[index] << "\t\t" << ts1_dth[index] << ":" << ts1_dtm[index] << endl;
     cout << " " << ts2[index] << " \t" << ts2_ath[index] << ":" << ts2_atm[index] << "\t\t" << ts2_dth[index] << ":" << ts2_dtm[index] << endl;
     cout << " " << ts3[index] << " \t" << ts3_ath[index] << ":" << ts3_atm[index] << "\t\t" << ts3_dth[index] << ":" << ts3_dtm[index] << endl;
     cout << " " << ts4[index] << "\t" << ts4_ath[index] << ":" << ts4_atm[index] << "\t\t" << ts4_dth[index] << ":" << ts4_dtm[index] << endl;
     cout << endl;
     cout << " Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
@@ -579,7 +580,7 @@ void add_train_route(void)
     char flag = '1';
     while (flag == '1') // loop run until user want to add routes
     {
-        system("cls");
+        //system("clear");
         head();
         cout << " Admin >> Add new Train Route" << endl;
         cout << "_____________________________________________________________" << endl;
@@ -727,7 +728,7 @@ void add_train_route(void)
 void set_ticket_price(int index)
 {
     index--;
-    system("cls");
+    //system("clear");
     head();
     cout << " Admin >> Set Ticket Prices" << endl;
     cout << "_____________________________________________________________" << endl;
@@ -752,7 +753,7 @@ void set_ticket_price(int index)
 void set_freight_rate(int index)
 {
     index--;
-    system("cls");
+    //system("clear");
     head();
     cout << " Admin >> Set Freight Rate " << endl;
     cout << "_____________________________________________________________" << endl;
@@ -815,7 +816,7 @@ int station_schedule_menu(string name)
 void train_station_check(string name, int index)
 {
     index--;
-    system("cls");
+    //system("clear");
     head();
     // in place of "name" there we pass "user/admin" from function call
     cout << " " << name << " >> View Station Schedule " << endl;
@@ -846,7 +847,7 @@ void train_station_check(string name, int index)
     }
     cout << endl;
     cout << "Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
@@ -862,10 +863,17 @@ void add_notice(void)
     cout << endl;
     cin.ignore();
     getline(cin, notice); // string varaible for taking  notice as input
+    //ofstream fout("NoticeBoard.txt", ios::app | ios::ate);
+    
+
+    ofstream outfile("NoticeBoard.txt");  
+    outfile << notice << endl;
+    outfile.close();
+
 
     cout << endl;
     cout << "Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
@@ -900,7 +908,7 @@ void view_employers_data(void)
 
     cout << endl;
     cout << "Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
@@ -947,7 +955,7 @@ void view_tickets_price(void)
     }
     cout << endl;
     cout << "Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
@@ -957,7 +965,7 @@ void buy_ticket(int index)
     index--;
     t_name[t] = train[index];
 
-    system("cls");
+    //system("clear");
     head();
 
     cout << " User >> Buy Tickets " << endl;
@@ -1014,7 +1022,7 @@ void buy_ticket(int index)
         cin >> year[t];
 
         // check on year
-        if (year[t] == 2022)
+        if (year[t] == 2024)
         {
             // check on month
             if (month[t] == 1 || month[t] == 3 || month[t] == 5 || month[t] == 7 || month[t] == 8 || month[t] == 10 || month[t] == 12)
@@ -1081,7 +1089,7 @@ void buying_ticket_message(char flag)
 {
     if (flag == '1') // message of buying ticket
     {
-        system("cls");
+        //system("clear");
         head();
         cout << " User >> Buy Tickets " << endl;
         cout << "_____________________________________________________________" << endl;
@@ -1114,7 +1122,7 @@ void buying_ticket_message(char flag)
 
     cout << endl;
     cout << "Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
@@ -1138,7 +1146,7 @@ void view_freight_rate(void)
 
     cout << endl;
     cout << "Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
@@ -1146,7 +1154,7 @@ void view_freight_rate(void)
 void book_cargo(int index)
 {
     index--;
-    system("cls");
+    //system("clear");
     head();
     cout << " User >> Book Cargo " << endl;
     cout << "_____________________________________________________________" << endl;
@@ -1276,7 +1284,7 @@ void confirming_book_cargo(char flag)
     if (flag == '1') // message of cargo booked
     {
         cout << endl;
-        system("cls");
+        //system("clear");
         head();
         cout << " User >> Booked cargo " << endl;
         cout << "_____________________________________________________________" << endl;
@@ -1308,7 +1316,7 @@ void confirming_book_cargo(char flag)
 
     cout << endl;
     cout << "Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
@@ -1321,11 +1329,21 @@ void view_notice(void)
     cout << endl;
     cout << "Notice Board......" << endl;
     cout << endl;
-    cout << notice; // string notice variable
+    ifstream fin("NoticeBoard.txt");
+
+    if (fin.is_open()) {
+        string line;
+        while (getline(fin, line)) {
+            cout << line << endl;
+        }
+        fin.close();
+    } else {
+        cout << "Unable to open NoticeBoard.txt" << endl;
+    }
 
     cout << endl;
     cout << "Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
@@ -1343,7 +1361,7 @@ void my_tickets(void)
 
     cout << endl;
     cout << "Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
@@ -1468,7 +1486,7 @@ void my_booked_cargo(void)
 
     cout << endl;
     cout << "  Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
@@ -1576,7 +1594,7 @@ void print_booked_cargo(void)
 // functoin for developer name
 void developer(void)
 {
-    system("cls");
+    //system("clear");
     cout << endl
          << endl
          << endl;
@@ -1618,7 +1636,7 @@ char edit_route(void)
 // function for daleting already exist route
 void delete_route(void)
 {
-    system("cls");
+    //system("clear");
     int op;
     char flag;
 
@@ -1677,7 +1695,7 @@ void delete_route(void)
     }
     cout << endl;
     cout << "Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
@@ -1731,7 +1749,7 @@ void update_array(int op)
 // function for mofdify all ready exist train route
 char modify_route(void)
 {
-    system("cls");
+    //system("clear");
     head();
     cout << " Admin >> Modify Route " << endl;
     cout << "_____________________________________________________________" << endl;
@@ -1755,7 +1773,7 @@ char modify_route(void)
 // Function for changing already exist Train name
 void change_train_name(void)
 {
-    system("cls");
+    //system("clear");
     int idx, a = 1;
     idx = list_of_trains("Admin", "Moify Route");
 
@@ -1793,14 +1811,14 @@ void change_train_name(void)
     cout << " Train name changed Succesfully." << endl;
     cout << endl;
     cout << "Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
 // function for changing stations of alraedy exist train route
 void change_train_stations(void)
 {
-    system("cls");
+    //system("clear");
     int idx;
     idx = list_of_trains("Admin", "Moify Route");
     idx = idx - 1;
@@ -1924,7 +1942,7 @@ void change_train_stations(void)
     cout << " Train Stations changed Succesfully." << endl;
     cout << endl;
     cout << "Press any key for continue....";
-    getch();
+    
     cout << endl;
 }
 
